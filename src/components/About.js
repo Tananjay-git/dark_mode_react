@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-let myStyle = {
-    color : 'white',
-    backgroundColor : 'black',
-    borderRadius : '10px'
-}
+
+
 export default function About(props) {
+
+    const [myStyle,setmyStyle] = useState(
+        {
+             color : 'white',
+             backgroundColor : 'black',
+             borderRadius : '10px'
+         }
+    )
+
+    const [btnText , setbtnText] = useState("Switch To Light Mode")
+
+    let toggleStyle = ()=>{
+        if(myStyle.color === 'white'){
+            setmyStyle({
+                color : 'black',
+                backgroundColor : 'white',
+                borderRadius : '10px'
+            })
+            setbtnText("Switch To Dark Mode")
+        }
+        else{  
+            setmyStyle({
+                color : 'white',
+                backgroundColor : 'black',
+                borderRadius : '10px'
+            })
+            setbtnText("Switch To Light Mode")
+        }
+    }
+
+
   return (
       <div className='container my-5 ' style={myStyle}>
         <h2 className='py-2'>{props.title}</h2>
@@ -47,7 +75,7 @@ export default function About(props) {
                 </div>
             </div>
         </div>
-        <button type="button" className="btn btn-primary my-3">Switch To Dark Mode</button>
+        <button type="button" className="btn btn-primary my-3"  onClick={toggleStyle} >{btnText}</button>
     </div>
   )
 }
